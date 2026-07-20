@@ -5,12 +5,14 @@ import { BullModule } from '@nestjs/bullmq';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
+import { validateEnv } from './config/env.validation';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', '../.env'],
+      envFilePath: '.env',
+      validate: validateEnv,
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
@@ -22,6 +24,7 @@ import { HealthModule } from './health/health.module';
         password: config.get<string>('POSTGRES_PASSWORD', 'kcbank'),
         database: config.get<string>('POSTGRES_DB', 'kcbank'),
         entities: [],
+        migrations: [],
         synchronize: false,
         autoLoadEntities: true,
       }),
