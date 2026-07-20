@@ -11,7 +11,7 @@ env:
 
 jobs:
   backend:
-    name: Backend (lint, test, build)
+    name: Backend (lint, test, e2e, build)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,6 +35,9 @@ jobs:
 
       - name: Test
         run: npm run test
+
+      - name: Test (e2e)
+        run: npm run test:e2e
 
       - name: Build
         run: npm run build
