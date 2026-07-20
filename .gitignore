@@ -1,0 +1,10 @@
+# env files (nunca commitear valores reales)
+.env
+.env.local
+.env.*.local
+
+# node
+node_modules/
+
+# OS
+.DS_Store
